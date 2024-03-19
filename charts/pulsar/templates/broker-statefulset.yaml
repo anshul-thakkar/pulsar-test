@@ -271,28 +271,28 @@ spec:
           readOnlyRootFilesystem: false
       {{- end }}
         env:
-          {{- if and (and .Values..storageOffload (eq .Values..storageOffload.driver "aws-s3")) .Values..storageOffload.secret }}
+          {{- if and (and .Values.storageOffload (eq .Values.storageOffload.driver "aws-s3")) .Values.storageOffload.secret }}
           - name: AWS_ACCESS_KEY_ID
             valueFrom:
               secretKeyRef:
-                name: {{ .Values..storageOffload.secret }}
+                name: {{ .Values.storageOffload.secret }}
                 key: AWS_ACCESS_KEY_ID
           - name: AWS_SECRET_ACCESS_KEY
             valueFrom:
               secretKeyRef:
-                name: {{ .Values..storageOffload.secret }}
+                name: {{ .Values.storageOffload.secret }}
                 key: AWS_SECRET_ACCESS_KEY
           {{- end }}
-          {{- if and .Values..storageOffload (eq .Values..storageOffload.driver "azureblob") }}
+          {{- if and .Values.storageOffload (eq .Values.storageOffload.driver "azureblob") }}
           - name: AZURE_STORAGE_ACCOUNT
             valueFrom:
               secretKeyRef:
-                name: {{ .Values..storageOffload.secret }}
+                name: {{ .Values.storageOffload.secret }}
                 key: AZURE_STORAGE_ACCOUNT
           - name: AZURE_STORAGE_ACCESS_KEY
             valueFrom:
               secretKeyRef:
-                name: {{ .Values..storageOffload.secret }}
+                name: {{ .Values.storageOffload.secret }}
                 key: AZURE_STORAGE_ACCESS_KEY
           {{- end }}
       volumes:
