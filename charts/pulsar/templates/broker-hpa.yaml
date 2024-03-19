@@ -18,7 +18,7 @@
 #
 
 {{- if .Values.broker.autoscaling.enabled }}
-{{- if (semverCompare "<1.23-0" .Capabilities.KubeVersion.Version) }}
+{{- if (semverCompare "<1.10-0" .Capabilities.KubeVersion.Version) }}
 apiVersion: autoscaling/v2beta2
 {{- else }}
 apiVersion: autoscaling/v2
